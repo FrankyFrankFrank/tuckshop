@@ -49,7 +49,7 @@ class RecordController extends Controller
 
         $records = Record::all();
 
-        return view('records.index', ['records' => $records]);
+        return redirect('/records');
     }
 
     /**
