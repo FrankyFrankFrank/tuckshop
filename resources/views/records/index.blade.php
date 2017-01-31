@@ -9,7 +9,7 @@
 	--}}
 	<div class="row">
 		<div class="col-md-12">
-			<a href="/records/create"><span class="icon">@icon('add-solid', 'small') Add New</span></a>
+			<p class="text-right"><a href="/records/create"><span class="icon">@icon('add-solid', 'small') Add New</span></a></p>
 		</div>
 	</div>
 

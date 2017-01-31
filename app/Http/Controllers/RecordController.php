@@ -15,7 +15,7 @@ class RecordController extends Controller
      */
     public function index()
     {
-        $records = Record::all();
+        $records = Record::orderBy('title', 'asc')->get();
 
         return view('records.index', ['records' => $records]);
     }
