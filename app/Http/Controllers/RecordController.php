@@ -31,13 +31,20 @@ class RecordController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a new Record.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'title' => 'required|alpha_num',
+            'artist' => 'required|alpha_num',
+            'year' => 'required|numeric',
+            'label' => 'required|alpha_num',
+        ]);
+
         $record = new Record([
             'title' => $request->input('title'),
             'artist' => $request->input('artist'),
