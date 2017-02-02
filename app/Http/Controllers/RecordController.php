@@ -15,9 +15,17 @@ class RecordController extends Controller
      */
     public function index()
     {
-        $records = Record::orderBy('title', 'asc')->get();
+        // If the user is logged in return the index view containing all records attached to the user
+        // Otherwise, redirect to the login page
+        if (auth()->user()) {
 
-        return view('records.index', ['records' => $records]);
+            $records = Record::where('user_id', auth()->user()->id)->orderBy('title', 'asc')->get();
+
+            return view('records.index', ['records' => $records]);
+
+        } else {
+            return redirect('/login');
+        }
     }
 
     /**
@@ -38,6 +46,7 @@ class RecordController extends Controller
      */
     public function store(Request $request)
     {
+        // Validate Form input
         $this->validate($request, [
             'title' => 'required|alpha_num',
             'artist' => 'required|alpha_num',
@@ -45,6 +54,7 @@ class RecordController extends Controller
             'label' => 'required|alpha_num',
         ]);
 
+        // Create a new record
         $record = new Record([
             'title' => $request->input('title'),
             'artist' => $request->input('artist'),
@@ -52,10 +62,10 @@ class RecordController extends Controller
             'label' => $request->input('label'),
         ]);
 
-        $record->save();
+        // save the record for the currently authenticated user
+        auth()->user()->records()->save($record);
 
-        $records = Record::all();
-
+        // Redirect to the records index page
         return redirect('/records');
     }
 
