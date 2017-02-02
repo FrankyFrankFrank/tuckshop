@@ -27,7 +27,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 $factory->define(App\Record::class, function (Faker\Generator $faker) {
     return [
 	    'title' => $faker->city,
-	    'artist' => 'The ' . $faker->firstName . '/\'s', 
+	    'artist' => 'The ' . $faker->firstName . '\'s', 
 	    'year' => $faker->numberBetween(1970, 2017),
 	    'label' => $faker->company,
     ];
