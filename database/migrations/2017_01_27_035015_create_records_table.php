@@ -19,7 +19,10 @@ class CreateRecordsTable extends Migration
             $table->string('artist');
             $table->unsignedInteger('year');
             $table->string('label');
+            $table->unsignedInteger('user_id')->nullable();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
