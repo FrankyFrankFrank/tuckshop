@@ -17,8 +17,8 @@
 	Display Records Row 
 	--}}
 	<div class="row">
-		<div class="col-md-12">
-			@forelse($records as $record)
+		@forelse($records as $record)
+		<div class="col-md-4 col-sm-6">
 			<div class="panel panel-default">
 				<div class="panel-heading"><h4>{{ $record->title }}</h4></div>
 				<div class="panel-body">
@@ -26,10 +26,10 @@
 					<p>{{ $record->label }}, {{ $record->year }}</p>
 				</div>
 			</div>
-			@empty
-			<h1>No Records Found</h1>
-			@endforelse
 		</div>
+		@empty
+		<h1>No Records Found</h1>
+		@endforelse
 	</div>
 
 </div>
