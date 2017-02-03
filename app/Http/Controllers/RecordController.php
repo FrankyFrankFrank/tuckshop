@@ -111,6 +111,12 @@ class RecordController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $record = Record::find($id);
+
+        if ($record->user_id == auth()->user()->id) {
+            $record->delete();
+        }
+        
+        return redirect('/records');
     }
 }

@@ -14,19 +14,30 @@ class ManagingRecordsTest extends BrowserKitTest
 {
     use DatabaseMigrations;
 
-    public function test_can_create_new_record()
+    public function test_can_view_a_record()
     {
         $user = factory(User::class)->create();
 
         $this->actingAs($user);
 
-        $response = $this->post('/records', [
-            'title' => 'Tester Record',
-            'artist' => 'John Doe',
-            'year' => '1987',
-            'label' => 'Tested Records',
-        ]);
+        $this->visit('/records');
 
-        $this->seeInDatabase('records', ['title' => 'Tester Record']);
+        $this->click('Add New');
+
+        $this->type('Tester Record', 'title');
+        $this->type('John Doe', 'artist');
+        $this->type('1987', 'year');
+        $this->type('Tested Records', 'label');
+        $this->press('Submit');
+
+        $this->assertEquals(1, count(Record::all()));
+
+        $this->visit('/records');
+
+        $this->see('Tester Record');
+        $this->see('John Doe');
+        $this->see('1987');
+        $this->see('Tested Records');
     }
+
 }
