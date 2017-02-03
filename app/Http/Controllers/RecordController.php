@@ -48,10 +48,10 @@ class RecordController extends Controller
     {
         // Validate Form input
         $this->validate($request, [
-            'title' => 'required|alpha_num',
-            'artist' => 'required|alpha_num',
+            'title' => 'required|string',
+            'artist' => 'required|string',
             'year' => 'required|numeric',
-            'label' => 'required|alpha_num',
+            'label' => 'required|string',
         ]);
 
         // Create a new record

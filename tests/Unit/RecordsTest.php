@@ -2,13 +2,13 @@
 
 namespace Tests\Unit;
 
-use Tests\TestCase;
+use Tests\BrowserKitTest;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 use App\Record;
 
-class RecordsTest extends TestCase
+class RecordsTest extends BrowserKitTest
 {
 	use DatabaseMigrations;
 
@@ -22,6 +22,6 @@ class RecordsTest extends TestCase
     		'label' => 'Third Man Records',
 		]);
 
-		$this->assertDatabaseHas('records', ['title' => 'Test Record']);
+		$this->seeInDatabase('records', ['title' => 'Test Record']);
 	}
 }
