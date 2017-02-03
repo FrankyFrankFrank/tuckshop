@@ -14,7 +14,7 @@ class RecordsTest extends BrowserKitTest
 	use DatabaseMigrations;
 
 	/** @test **/
-	function can_create_new_record()
+	public function can_create_new_record()
 	{
 		$record = factory(Record::class)->create([
     		'title' => 'Test Record',
@@ -24,6 +24,17 @@ class RecordsTest extends BrowserKitTest
 		]);
 
 		$this->seeInDatabase('records', ['title' => 'Test Record']);
+	}
+
+	/** @test **/
+	public function records_belong_to_a_user()
+	{
+		$user = factory(User::class)->create();
+		$record = factory(Record::class)->create();
+
+		$user->records()->save($record);
+
+		$this->assertEquals(1, count($user->records->all()));
 	}
 
 	public function test_can_delete_a_record_belonging_to_user()
@@ -48,7 +59,7 @@ class RecordsTest extends BrowserKitTest
         $this->assertEquals(0, count(Record::all()));
         $record = factory(Record::class)->create();
         $this->assertEquals(1, count(Record::all()));
-        
+
         $user1->records()->save($record);
 
         $this->actingAs($user2);
