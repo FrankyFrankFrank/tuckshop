@@ -31620,7 +31620,7 @@ var Component = __webpack_require__(35)(
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/Adam/dev-projects/tuckshop/resources/assets/js/components/Example.vue"
+Component.options.__file = "/Users/adamfrank/dev-projects/tuckshop/resources/assets/js/components/Example.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Example.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -31631,16 +31631,10 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-9d12e100", Component.options)
+    hotAPI.createRecord("data-v-341f9172", Component.options)
   } else {
-    if (module.hot.data.cssModules && JSON.stringify(module.hot.data.cssModules) !== JSON.stringify(cssModules)) {
-      delete Component.options._Ctor
-    }
-    hotAPI.reload("data-v-9d12e100", Component.options)
+    hotAPI.reload("data-v-341f9172", Component.options)
   }
-  module.hot.dispose(function (data) {
-    data.cssModules = cssModules
-  })
 })()}
 
 module.exports = Component.exports
@@ -31724,7 +31718,7 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-9d12e100", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-341f9172", module.exports)
   }
 }
 

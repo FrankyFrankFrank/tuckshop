@@ -1,16 +1,12 @@
-.icon {
-    display: inline-block;
-    color: #6F7E85;
-	font-size: 20px;
-    line-height: 30px;
-}
 .zondicon {
-    color: #6F7E85;
     display: inline-block;
-    fill: #384348;
 	font-size: 16px;
     height: 20px;
     line-height: 30px;
-    vertical-align: baseline;
+    vertical-align: text-bottom;
 	width: 20px;
+}
+
+.btn-danger {
+    fill: #ffffff;
 }

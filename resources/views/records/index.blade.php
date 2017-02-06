@@ -9,7 +9,7 @@
 	--}}
 	<div class="row">
 		<div class="col-md-12">
-			<p class="text-right"><a href="/records/create"><span class="icon">@icon('add-solid', 'small') Add New</span></a></p>
+			<p class="text-right"><a class="btn btn-default" href="/records/create">@icon('add-solid', 'small') Add New</a></p>
 		</div>
 	</div>
 
@@ -24,6 +24,14 @@
 				<div class="panel-body">
 					<h5>{{ $record->artist }}</h5>
 					<p>{{ $record->label }}, {{ $record->year }}</p>
+				</div>
+				<div class="panel-footer">
+					<!-- Delete Record -->
+					{!! Form::model($record, [ 'route' => ['records.destroy', $record->id], 'method' => 'DELETE']) !!}
+						<button type="submit" class="btn btn-danger">
+						    @icon('close-solid', 'small') Delete
+						</button>
+					{!! Form::close() !!}
 				</div>
 			</div>
 		</div>
