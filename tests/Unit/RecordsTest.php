@@ -37,20 +37,6 @@ class RecordsTest extends BrowserKitTest
 		$this->assertEquals(1, count($user->records->all()));
 	}
 
-	public function test_can_delete_a_record_belonging_to_user()
-    {
-        $user = factory(User::class)->create();
-        $this->assertEquals(0, count(Record::all()));
-
-        $record = factory(Record::class)->create();
-        $user->records()->save($record);
-        $this->assertEquals(1, count(Record::all()));
-
-        $this->actingAs($user);
-        $this->call('DELETE', '/records/' . $record->id);
-        $this->assertEquals(0, count(Record::all()));
-    }
-
     public function test_can_only_delete_record_belonging_to_user()
     {
         $user1 = factory(User::class)->create();
@@ -65,5 +51,26 @@ class RecordsTest extends BrowserKitTest
         $this->actingAs($user2);
         $this->call('DELETE', '/records/' . $record->id);
         $this->assertEquals(1, count(Record::all()));
+    }
+
+    public function test_can_edit_record()
+    {
+        $record = factory(Record::class)->create();
+        $user = factory(User::class)->create();
+
+        $user->records()->save($record);
+
+        $this->actingAs($user);
+        $this->call('PATCH', '/records/' . $record->id, [
+            'title' => 'titedit',
+            'artist' => 'artedit',
+            'year' => 1887,
+            'label' => 'labedit',
+        ]);
+
+        $this->see('titedit');
+        $this->see('artedit');
+        $this->see('1887');
+        $this->see('labedit');
     }
 }
