@@ -68,6 +68,8 @@ class RecordsTest extends BrowserKitTest
             'label' => 'labedit',
         ]);
 
+        $this->visit('/records');
+
         $this->see('titedit');
         $this->see('artedit');
         $this->see('1887');

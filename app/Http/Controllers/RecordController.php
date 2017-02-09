@@ -119,7 +119,7 @@ class RecordController extends Controller
                 'year',
                 'label'    
             ]));
-           return redirect()->route('records.index');
+            return redirect()->route('records.index');
         } else {
             return redirect()->route('records.index');
         }
