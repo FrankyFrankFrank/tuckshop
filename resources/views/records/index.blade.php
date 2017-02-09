@@ -27,11 +27,18 @@
 				</div>
 				<div class="panel-footer">
 					<!-- Delete Record -->
-					{!! Form::model($record, [ 'route' => ['records.destroy', $record->id], 'method' => 'DELETE']) !!}
+					{!! Form::model($record, ['route' => ['records.destroy', $record->id], 'method' => 'DELETE']) !!}
 						<button type="submit" class="btn btn-danger">
 						    @icon('close-solid', 'small') Delete
 						</button>
 					{!! Form::close() !!}
+
+					<!-- Edit Record -->
+					<a href="{{ route('records.edit', ['id' => $record->id]) }}">
+						<button class="btn btn-success">
+						    @icon('close-solid', 'small') Edit
+						</button>
+					</a>
 				</div>
 			</div>
 		</div>

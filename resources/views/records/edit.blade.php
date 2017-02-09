@@ -20,26 +20,26 @@
 
 	<div class="row">
 		<div class="col-md-12">
-		{!! Form::model($record, ['route' => ['records.update', $record->id]]) !!}
+		{!! Form::model($record, ['method' => 'PATCH', 'route' => ['records.update', $record->id]]) !!}
 
 			<div class="form-group">
 				{{ Form::label('title', 'Title') }}
-				{{ Form::text('title', '', ['class' => 'form-control']) }}
+				{{ Form::text('title', null, ['class' => 'form-control']) }}
 			</div>
 
 			<div class="form-group">
 				{{ Form::label('artist', 'Artist') }}
-				{{ Form::text('artist', '', ['class' => 'form-control']) }}
+				{{ Form::text('artist', null, ['class' => 'form-control']) }}
 			</div>
 
 			<div class="form-group">
 				{{ Form::label('year', 'Year') }}
-				{{ Form::text('year', '', ['class' => 'form-control']) }}
+				{{ Form::text('year', null, ['class' => 'form-control']) }}
 			</div>
 
 			<div class="form-group">
 				{{ Form::label('label', 'Label') }}
-				{{ Form::text('label', '', ['class' => 'form-control']) }}
+				{{ Form::text('label', null, ['class' => 'form-control']) }}
 			</div>
 
 			{{ Form::submit('Submit', ['class' => 'btn btn-default']) }}
