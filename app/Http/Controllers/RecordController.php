@@ -112,15 +112,12 @@ class RecordController extends Controller
 
         if($record->user_id == auth()->user()->id) {
             $fields = collect($request->all());
-
             $fields->each(function ($field) use ($request) {
                 if($request->has($field)) {
                     $record->$field = $request->input($field);
                 }
             });
-
            $record->save();
-
            return view('records.index');
         } else {
             return redirect('/records');
