@@ -88,7 +88,9 @@ class RecordController extends Controller
      */
     public function edit($id)
     {
-        //
+        $record = Record::findOrFail($id);
+
+        return view('records.edit', ['record' => $record]);
     }
 
     /**
@@ -102,25 +104,24 @@ class RecordController extends Controller
     {
         // Validate Form input
         $this->validate($request, [
-            'title' => 'required|string',
-            'artist' => 'required|string',
-            'year' => 'required|numeric',
-            'label' => 'required|string',
+            'title' => 'nullable|string',
+            'artist' => 'nullable|string',
+            'year' => 'nullable|numeric',
+            'label' => 'nullable|string',
         ]);
-        
+
         $record = Record::findOrFail($id);
 
         if($record->user_id == auth()->user()->id) {
-            $fields = collect($request->all());
-            $fields->each(function ($field) use ($request) {
-                if($request->has($field)) {
-                    $record->$field = $request->input($field);
-                }
-            });
-           $record->save();
-           return view('records.index');
+            $record->update($request->intersect([
+                'title',
+                'artist',
+                'year',
+                'label'    
+            ]));
+           return redirect()->route('records.index');
         } else {
-            return redirect('/records');
+            return redirect()->route('records.index');
         }
 
 
