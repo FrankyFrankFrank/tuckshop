@@ -100,19 +100,33 @@ class RecordController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // Validate Form input
+        $this->validate($request, [
+            'title' => 'required|string',
+            'artist' => 'required|string',
+            'year' => 'required|numeric',
+            'label' => 'required|string',
+        ]);
+        
         $record = Record::findOrFail($id);
 
-        $fields = collect($request->all());
+        if($record->user_id == auth()->user()->id) {
+            $fields = collect($request->all());
 
-        $fields->each(function ($field) use ($request) {
-            if($request->has($field)) {
-                $record->$field = $request->input($field);
-            }
-        });
+            $fields->each(function ($field) use ($request) {
+                if($request->has($field)) {
+                    $record->$field = $request->input($field);
+                }
+            });
 
-       $record->save();
+           $record->save();
 
-       return view('records.index');
+           return view('records.index');
+        } else {
+            return redirect('/records');
+        }
+
+
 
     }
 

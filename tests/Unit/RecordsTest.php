@@ -73,4 +73,26 @@ class RecordsTest extends BrowserKitTest
         $this->see('1887');
         $this->see('labedit');
     }
+
+    public function test_cant_edit_record_that_doesnt_belong_to_user()
+    {
+        $record = factory(Record::class)->create();
+        $user = factory(User::class)->create();
+        $user2 = factory(User::class)->create();
+
+        $user2->records()->save($record);
+
+        $this->actingAs($user);
+        $this->call('PATCH', '/records/' . $record->id, [
+            'title' => 'titedit',
+            'artist' => 'artedit',
+            'year' => 1887,
+            'label' => 'labedit',
+        ]);
+
+        $this->dontSee('titedit');
+        $this->dontSee('artedit');
+        $this->dontSee('1887');
+        $this->dontSee('labedit');        
+    }
 }
