@@ -18,21 +18,24 @@
 	--}}
 	<div class="row">
 		@forelse($records as $record)
-		<div class="col-md-4 col-sm-6">
-			<div class="panel panel-default">
-				<div class="panel-heading"><h4>{{ $record->title }}</h4></div>
-				<div class="panel-body">
+		<div class="col-md-4 col-sm-6 record">
+			<div class="row">
+				<div class="col-sm-12">
+					<h4>{{ $record->title }}</h4>
 					<h5>{{ $record->artist }}</h5>
 					<p>{{ $record->label }}, {{ $record->year }}</p>
 				</div>
-				<div class="panel-footer">
+			</div>
+			<div class="row">
+				<div class="col-sm-6">
 					<!-- Delete Record -->
 					{!! Form::model($record, ['route' => ['records.destroy', $record->id], 'method' => 'DELETE']) !!}
 						<button type="submit" class="btn btn-danger">
 						    @icon('close-solid', 'small') Delete
 						</button>
 					{!! Form::close() !!}
-
+				</div>
+				<div class="col-sm-6">
 					<!-- Edit Record -->
 					<a href="{{ route('records.edit', ['id' => $record->id]) }}">
 						<button class="btn btn-success">
@@ -41,6 +44,7 @@
 					</a>
 				</div>
 			</div>
+
 		</div>
 		@empty
 		<h1>No Records Found</h1>
