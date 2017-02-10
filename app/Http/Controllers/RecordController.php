@@ -112,7 +112,7 @@ class RecordController extends Controller
 
         $record = Record::findOrFail($id);
 
-        if($record->user_id == auth()->user()->id) {
+        if($record->userOwns(auth()->user())) {
             $record->update($request->intersect([
                 'title',
                 'artist',
@@ -138,7 +138,7 @@ class RecordController extends Controller
     {
         $record = Record::find($id);
 
-        if ($record->user_id == auth()->user()->id) {
+        if ($record->userOwns(auth()->user())) {
             $record->delete();
         }
         

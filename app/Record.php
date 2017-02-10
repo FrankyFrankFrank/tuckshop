@@ -14,4 +14,9 @@ class Record extends Model
     {
     	return $this->belongsTo(User::class);
     }
+
+    public function userOwns($user)
+    {
+    	return $this->user_id == $user->id;
+    }
 }
