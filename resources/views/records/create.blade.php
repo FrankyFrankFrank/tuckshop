@@ -4,6 +4,8 @@
 
 <div class="container">
 	
+	<h1>Add New Record</h1>
+
 	@if (count($errors) > 0)
 	<div class="row">
 		<div class="col-md-12">

@@ -27,15 +27,13 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-sm-6">
+				<div class="col-xs-12">
 					<!-- Delete Record -->
-					{!! Form::model($record, ['route' => ['records.destroy', $record->id], 'method' => 'DELETE']) !!}
+					{!! Form::model($record, ['route' => ['records.destroy', $record->id], 'method' => 'DELETE', 'style' => 'display:inline;']) !!}
 						<button type="submit" class="btn btn-danger">
 						    @icon('close-solid', 'small') Delete
 						</button>
 					{!! Form::close() !!}
-				</div>
-				<div class="col-sm-6">
 					<!-- Edit Record -->
 					<a href="{{ route('records.edit', ['id' => $record->id]) }}">
 						<button class="btn btn-success">
